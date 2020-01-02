@@ -2,11 +2,11 @@ import React from 'react'
 import VideoItem from './VideoItem'
 
 
-// props ma videos aauxa,  onvideoSelect pani 6
+// props ma videos aauxa,  onVideoSelect pani 6
 const videoList = (props)=>{
 
     const renderedList = props.videos.map((video)=>{
-        return < VideoItem  onVideoSelect={props.onVideoSelect} video={video}/>
+        return < VideoItem key={video.id.videoId} onVideoSelect={props.onVideoSelect} video={video}/>
 
     })
     return (

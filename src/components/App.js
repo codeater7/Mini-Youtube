@@ -2,13 +2,13 @@ import React from 'react';
 import SearchBar from './SearchBar';
 import youtube from '../apis/youtube';
 import VideoList from './VideoList';
-
+import VideoDetails from './VideoDetails';
 
 class App extends React.Component {
-	state = { 
-        videos: [],
-        selectedVidoe: null
-     };
+	state = {
+		videos: [],
+		selectedVidoe: null,
+	};
 
 	onTermSubmit = async term => {
 		console.log(term);
@@ -17,20 +17,22 @@ class App extends React.Component {
 		const response = await youtube.get('/search', { params: { q: term } });
 
 		console.log(response);
-        this.setState({ videos: response.data.items }); // response ko data ko vitra
-    };
+		this.setState({ videos: response.data.items, selectedVidoe: response.data.items[0] }); // response ko data ko vitra
+	};
 
-    // video object is the one we fetched from the api
-    onVideoSelect = (video)=>{
-        console.log('From the App', video)
-    }
+	// video object is the one we fetched from the api
+	onVideoSelect = video => {
+		this.setState({ selectedVidoe: video });
+	};
 
 	render() {
 		return (
 			<div className="ui container">
-				<SearchBar onFormSubmit={this.onTermSubmit} />
-                I have {this.state.videos.lenth} videos.
-                <VideoList onVideoSelect={this.onVideoSelect}videos={this.state.videos}/>
+				<SearchBar onFormSubmit={this.onTermSubmit} />I have {this.state.videos.length} videos.
+				<VideoDetails video={this.state.selectedVidoe} />
+				<VideoList onVideoSelect={this.onVideoSelect} videos={this.state.videos} />
+				{/* All the props name above... vidoes, onnVideoSelect, video */}
+				{/* cannot read property aayo vani, mostly use the check */}
 			</div>
 		);
 	}
