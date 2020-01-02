@@ -1,18 +1,20 @@
 import React from 'react';
 
 class SearchBar extends React.Component {
-    state={ term: ''}
+    state={ term: '' }
     // callback is going to be executed with event object
-    //Event handlers
+  
     onInputChange=(event)=>{
         this.setState({term: event.target.value})
+    }
     onFormSubmit=(event)=>{
+
         // Enter garexi page refresh hunee behaviour is not what we want
-        event.preventDefault();
-        //TODO: Make Sure we call callback from parent component
+    event.preventDefault();
+    this.props.onFormSubmit(this.state.term)
     }
 
-    }
+    
 	render() {
 		return (
         <div className="search-bar ui segment">
