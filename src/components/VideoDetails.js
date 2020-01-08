@@ -6,8 +6,7 @@ const VideoDetail = props => {
     //instead of single quote use back ticks on both side ..$ sign curley bracket 
     //otherwise string concatenation
 
-    
-	if (!props.video) {
+    if (!props.video) {
 		return <div></div>;
 	} else {
         const videoSrc= 'https://www.youtube.com/embed/'+ props.video.id.videoId // api bata 

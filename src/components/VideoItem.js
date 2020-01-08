@@ -3,9 +3,9 @@ import React from 'react';
 // this props has video  ra onVideoSelect hunxa
 const VideoItem = props => {
 	return (
-        // Very imp that calling only onVideoSelect wont work, we need to make it arrow function and pass video
-		<div onClick={() => props.onVideoSelect(props.video)}> 
-			<img src={props.video.snippet.thumbnails.medium.url} alt="from youtube API"/>
+		// Very imp that calling only onVideoSelect wont work, we need to make it arrow function and pass video
+		<div onClick={() => props.onVideoSelect(props.video)}>
+			<img src={props.video.snippet.thumbnails.medium.url} alt="from youtube API" />
 			{props.video.snippet.title}
 		</div>
 	);

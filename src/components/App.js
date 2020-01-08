@@ -8,20 +8,21 @@ class App extends React.Component {
 	state = {
 		videos: [],
 		selectedVidoe: null,
-    };
-    componentDidMount(){
-        this.onTermSubmit('youtube')
-    }
+	};
+	componentDidMount() {
+		this.onTermSubmit('youtube');
+	}
 
 	onTermSubmit = async term => {
 		console.log(term);
 		//pre configured instance of Axios
 		// asynchronous request so have to use promise
-        const response = await youtube.get('/search', { params: { q: term } });
-        console.log(response);
-        this.setState({ 
-            videos: response.data.items, 
-            selectedVidoe: response.data.items[0] }); // response ko data ko vitra
+		const response = await youtube.get('/search', { params: { q: term } });
+		console.log(response);
+		this.setState({
+			videos: response.data.items,
+			selectedVidoe: response.data.items[0],
+		}); // response ko data ko vitra
 	};
 
 	// video object is the one we fetched from the api
