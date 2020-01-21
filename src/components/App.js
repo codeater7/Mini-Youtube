@@ -7,35 +7,35 @@ import VideoDetails from './VideoDetails';
 class App extends React.Component {
 	state = {
 		videos: [],
-		selectedVidoe: null,
+		selectedVideo: null,
 	};
 	componentDidMount() {
-		this.onTermSubmit('youtube');
+		this.onTermSubmit('hello');
 	}
 
-	onTermSubmit = async term => {
-		console.log(term);
-		//pre configured instance of Axios
+	onTermSubmit = async whatdoyouwantoSearch => {
+
 		// asynchronous request so have to use promise
-		const response = await youtube.get('/search', { params: { q: term } });
-		console.log(response);
+		const response = await youtube.get('/search', { params: { q: whatdoyouwantoSearch } });
+		console.log(response)
 		this.setState({
 			videos: response.data.items,
-			selectedVidoe: response.data.items[0],
+			selectedVideo: response.data.items[0],
 		}); // response ko data ko vitra
 	};
 
 	// video object is the one we fetched from the api
-	onVideoSelect = video => {
-		this.setState({ selectedVidoe: video });
+	onVideoSelect = whichvideo => {
+		this.setState({ selectedVideo: whichvideo });
 	};
 
 	render() {
 		return (
 			<div className="ui container">
-				<SearchBar onFormSubmit={this.onTermSubmit} />
+				<SearchBar otherNameforthisfunction={this.onTermSubmit} />
 				<VideoDetails video={this.state.selectedVidoe} />
 				<VideoList onVideoSelect={this.onVideoSelect} videos={this.state.videos} />
+
 				{/* All the props name above... vidoes, onnVideoSelect, video */}
 				{/* cannot read property aayo vani, mostly use the check */}
 			</div>

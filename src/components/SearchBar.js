@@ -1,29 +1,27 @@
 import React from 'react';
 
 class SearchBar extends React.Component {
-	state = { term: '' };
-	// callback is going to be executed with event object
-
-	onInputChange = event => {
-		this.setState({ term: event.target.value });
-	};
-	onFormSubmit = event => {
-		// Enter garexi page refresh hunee behaviour is not what we want
+	state = { searchterm: ' ' };
+	
+	UponSubmit = event => {
 		event.preventDefault();
-		this.props.onFormSubmit(this.state.term);
+		//which method do you want to call ? Isnot it the function from main App, so we imported and invoked with our searchterm
+		this.props.otherNameforthisfunction(this.state.searchterm);
+		
 	};
 
 	render() {
 		return (
-			<div className="search-bar ui segment">
-				<form onSubmit={this.onFormSubmit} className="ui form">
-					<div className="field">
+			<div >
+				<form onSubmit={this.UponSubmit} >
+					<div >
 						<label>Video Search</label>
 						<input
 							type="text"
-							value={this.state.term}
-							//onchange= {e=> this.setState({term=e.target.value})}
-							onChange={this.onInputChange}
+							value={this.state.searchterm}
+							
+							// callback is going to be executed with event object
+							onChange={event=> this.setState({searchterm: event.target.value})}
 						/>
 					</div>
 				</form>
