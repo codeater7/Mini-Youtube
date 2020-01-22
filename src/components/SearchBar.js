@@ -5,10 +5,12 @@ class SearchBar extends React.Component {
 	
 	UponSubmit = event => {
 		event.preventDefault();
+
+		const { otherNameforthisfunction }= this.props
 		//which method do you want to call ? Isnot it the function from main App, so we imported and invoked with our searchterm
-		this.props.otherNameforthisfunction(this.state.searchterm);
+		otherNameforthisfunction(this.state.searchterm);
 		
-	};
+	}; 
 
 	render() {
 		return (

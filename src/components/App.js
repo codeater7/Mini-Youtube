@@ -13,11 +13,12 @@ class App extends React.Component {
 		this.onTermSubmit('hello');
 	}
 
-	onTermSubmit = async whatdoyouwantoSearch => {
+	onTermSubmit = async term => {
 
 		// asynchronous request so have to use promise
-		const response = await youtube.get('/search', { params: { q: whatdoyouwantoSearch } });
-		console.log(response)
+		const response = await youtube.get('/search', { params: { q: term } });
+		
+		
 		this.setState({
 			videos: response.data.items,
 			selectedVideo: response.data.items[0],
@@ -25,15 +26,15 @@ class App extends React.Component {
 	};
 
 	// video object is the one we fetched from the api
-	onVideoSelect = whichvideo => {
-		this.setState({ selectedVideo: whichvideo });
+	onVideoSelect = video => {
+		this.setState({ selectedVideo: video });
 	};
 
 	render() {
 		return (
 			<div className="ui container">
 				<SearchBar otherNameforthisfunction={this.onTermSubmit} />
-				<VideoDetails video={this.state.selectedVidoe} />
+				<VideoDetails video={this.state.selectedVideo} />
 				<VideoList onVideoSelect={this.onVideoSelect} videos={this.state.videos} />
 
 				{/* All the props name above... vidoes, onnVideoSelect, video */}
@@ -43,3 +44,10 @@ class App extends React.Component {
 	}
 }
 export default App;
+
+
+
+
+    
+
+	
